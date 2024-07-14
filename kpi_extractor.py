@@ -50,8 +50,7 @@ def kpi_to_graphs_prompt(graphs_json_str):
     Here is a list of graphs that had been produced by another datalist that describe the outcomes of the work done for this grant. 
     {graphs_json_str}
 
-    For each KPI that you had identified above,
-    you need to identify which graphs describe the outcomes of the work done for this grant for that KPI.
+    For each KPI that you had identified above, you need to identify which graphs describe the outcomes of the work done for this grant for that KPI. Try to match more than one graph to each KPI if possible.
 
     You must update your list in the following json structure:
     {{
@@ -69,7 +68,7 @@ def kpi_to_graphs_prompt(graphs_json_str):
 
     You must use the dashboard_id from the list of graphs and its description. do not use PNGs in the original report 
 
-    You must make sure that ALL graphs listed are added to a KPI or added into a separate category called 'discarded' in the output. No graphs should be left unaccounted for. 
+    You must make sure that ALL graphs listed are added to a KPI or added into a separate category called 'discarded' in the output. No graphs should be left unaccounted for. Minimize discards.
 
     """
     
