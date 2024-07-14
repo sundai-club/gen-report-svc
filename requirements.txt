@@ -1,6 +1,10 @@
-boto3==1.34.144
 fastapi==0.111.1
 langchain-openai
 python-dotenv
 langchain_community
 docx2txt
+langchain
+langchain_core
+openai
+Requests==2.32.3
+

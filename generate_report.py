@@ -1,28 +1,31 @@
-import boto3
+import requests
+import os
 
-def download_from_s3(bucket_name, s3_file_key, local_file_path):
-  # Create an S3 client
-  s3 = boto3.client('s3')
+from load_input import llm_chain_input_json
 
-  try:
-      # Download the file
-      s3.download_file(bucket_name, s3_file_key, local_file_path)
-      print(f"File downloaded successfully: {local_file_path}")
-  except Exception as e:
-      print(f"Error downloading file: {e}")
+def download_public_s3_file(s3_url, local_file_path):
+    try:
+        # Send a GET request to the S3 URL
+        response = requests.get(s3_url)
+        
+        # Check if the request was successful
+        response.raise_for_status()
+        
+        # Create the tmp folder if it doesn't exist
+        if not os.path.exists('tmp'):
+          os.makedirs('tmp')
+        
+        # Write the content to a local file
+        with open('tmp/'+local_file_path, 'wb') as file:
+            file.write(response.content)
+        
+        print(f"File downloaded successfully: {local_file_path}")
+    except requests.exceptions.RequestException as e:
+        print(f"Error downloading file: {e}")
 
-# Example usage
-bucket_name = 'your-bucket-name'
-s3_file_key = 'path/to/your/file.txt'
-local_file_path = '/file.txt'
-
-download_from_s3(bucket_name, s3_file_key, local_file_path)
-
-def generate_report(proposal_pdf, data_csv):
-  pdf_file = download_from_s3(bucket_name, proposal_pdf, '/tmp/proposal.pdf')
-  csv_file = download_from_s3(bucket_name, data_csv, '/tmp/data.csv')
-  url = 'this is the report'
-  return url
-  
-
-  
+def trigger_report(report_url, data_url):
+    download_public_s3_file(report_url, "report.docx")
+    download_public_s3_file(data_url, "data.xlsx")
+    
+    return llm_chain_input_json("tmp/report.docx")
+    

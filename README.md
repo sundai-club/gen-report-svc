@@ -38,3 +38,9 @@ pipreqs --force --ignore bin,etc,include,lib,lib64
 ```bash
 docker build -t gen-report-svc .
 ```
+
+### Run the Docker container
+
+```bash
+docker run -d -p 8000:8000 gen-report-svc
+```
