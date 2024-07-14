@@ -1,0 +1,256 @@
+{
+    "graphs": [
+        {
+            "title": "Family Dynamics with and without Husbands",
+            "id": 162,
+            "dashboard_id": 35,
+            "description": "The bar graph titled \"Family Dynamics with and without Husbands\" presents data regarding three categories: Co-wives, Children, and Children old enough for school, all without the presence of a husband. The graph illustrates that the number of co-wives is relatively low, while the number of children and children old enough for school are considerably higher, with the latter being slightly less than the former. The purpose of the graph is to highlight the family structure components in the absence of a husband.",
+            "image_path": "sample_output/images/Family_Dynamics_with_and_without_Husbands.png"
+        },
+        {
+            "title": "Supportive Husbands Proportion",
+            "id": 163,
+            "dashboard_id": 35,
+            "description": "This pie chart titled \"Supportive Husbands Proportion\" illustrates the percentage of husbands who are considered supportive versus those who are not. It shows that 70.3% of husbands are supportive, while 29.7% are not.",
+            "image_path": "sample_output/images/Supportive_Husbands_Proportion.png"
+        },
+        {
+            "title": "New vs Existing Businesses Proportion",
+            "id": 164,
+            "dashboard_id": 35,
+            "description": "This pie chart shows the proportion of new businesses compared to existing businesses. It illustrates that 65.6% are new businesses, while 34.4% are existing ones. The purpose is to highlight the distribution between newly established companies and those that have been around for some time.",
+            "image_path": "sample_output/images/New_vs_Existing_Businesses_Proportion.png"
+        },
+        {
+            "title": "Income Over Time",
+            "id": 165,
+            "dashboard_id": 35,
+            "description": "This graph shows the changes in income over a period of time, specifically indicating the occurrence of earning 10,000 Kshs and above per month. The data shows a spike in income in March 2023, where the value reaches 3 units, while no other significant income events are recorded for the other dates in the timeline.",
+            "image_path": "sample_output/images/Income_Over_Time.png"
+        },
+        {
+            "title": "Number of Children in Families",
+            "id": 167,
+            "dashboard_id": 35,
+            "description": "This bar graph illustrates the distribution of the number of children in families across different categories, with each category representing a specific number of children. The x-axis represents these categories (ranging from 1 to 18, and 99 or more), while the y-axis shows the number of families (values) in each category. The graph provides a visual representation of how common each family size is, indicating that the most frequent number of children per family falls around categories 4 to 8, with a notable peak in the category of \"99 or more\" children.",
+            "image_path": "sample_output/images/Number_of_Children_in_Families.png"
+        },
+        {
+            "title": "Number of Participants Who Trained Others per Skill",
+            "id": 168,
+            "dashboard_id": 35,
+            "description": "The graph illustrates the number of participants who trained others in two different skills: Catering and Sewing. The purpose is to compare the participation levels in each skill. The graph shows that substantially more participants trained others in sewing (around 160 participants) compared to catering (about 80 participants).",
+            "image_path": "sample_output/images/Number_of_Participants_Who_Trained_Others_per_Skill.png"
+        },
+        {
+            "title": "Number of Meals Consumed by Families",
+            "id": 169,
+            "dashboard_id": 35,
+            "description": "This bar graph displays the number of meals consumed by families across different categories. The x-axis represents the categories, while the y-axis indicates the values (number of meals). The tallest bar, which corresponds to a category of around 3.0, shows the highest number of meals consumed\u2014over 200. The second category, around 2.0, follows with around 150 meals, and the first category, around 1.0, shows about 25 meals, indicating the varying levels of meal consumption among different groups.",
+            "image_path": "sample_output/images/Number_of_Meals_Consumed_by_Families.png"
+        },
+        {
+            "title": "Water Treatment Proportion",
+            "id": 170,
+            "dashboard_id": 35,
+            "description": "This graph shows the proportion of different methods used for water treatment. The categories include \"Boiled,\" \"Water is not treated,\" \"Chlorine,\" \"Water filter,\" \"Sieve,\" \"Borehole,\" and \"Purchased water water filter.\" The data indicates that the most common method is not treating the water, followed by boiling. Other methods like using chlorine, water filters, sieves, boreholes, and purchased water filters are much less common.",
+            "image_path": "sample_output/images/Water_Treatment_Proportion.png"
+        },
+        {
+            "title": "Financial Emergencies Proportion",
+            "id": 171,
+            "dashboard_id": 35,
+            "description": "This pie chart depicts the proportion of responses to a question about financial emergencies. It shows that 61.2% answered 'Yes', indicating they have faced financial emergencies, while 38.8% answered 'No', indicating they have not faced financial emergencies. The purpose of the graph is to illustrate and compare the relative frequencies of these two responses.",
+            "image_path": "sample_output/images/Financial_Emergencies_Proportion.png"
+        },
+        {
+            "title": "Were Financial Emergencies Paid For Proportion",
+            "id": 172,
+            "dashboard_id": 35,
+            "description": "The purpose of the graph is to show the proportion of respondents who had their financial emergencies paid for. It tells us that 51.8% of the respondents fully paid for their financial emergencies, 27.7% partially paid for them, and 20.5% did not pay for them at all.",
+            "image_path": "sample_output/images/Were_Financial_Emergencies_Paid_For_Proportion.png"
+        },
+        {
+            "title": "Distance to Hospital",
+            "id": 173,
+            "dashboard_id": 35,
+            "description": "This bar graph displays the distribution of distances to the hospital in different categories: 1 - 3 km, 3 - 5 km, and more than 5 km. The y-axis represents the number of values (frequency) for each distance category. The graph shows that the most common distance to the hospital is within 1 - 3 km, followed by 3 - 5 km, with the least common being more than 5 km. The purpose is to illustrate the frequency of different distance ranges from the hospital.",
+            "image_path": "sample_output/images/Distance_to_Hospital.png"
+        },
+        {
+            "title": "Transportation Mode to Reach Hospital",
+            "id": 174,
+            "dashboard_id": 35,
+            "description": "This bar graph illustrates the distribution of transportation modes used to reach the hospital. The categories include walking, motorbiking, and several infrequent or uncertain modes indicated by various text entries. The graph shows that the majority of people walk to the hospital, followed by a smaller number who use motorbikes. Other transportation methods are used much less frequently.",
+            "image_path": "sample_output/images/Transportation_Mode_to_Reach_Hospital.png"
+        },
+        {
+            "title": "Ability to Afford More Healthcare Proportion",
+            "id": 175,
+            "dashboard_id": 35,
+            "description": "This pie chart illustrates the proportion of individuals who reported their ability to afford more healthcare. 80.8% of respondents indicated they could afford more healthcare services (Yes), while 19.2% indicated they could not (No).",
+            "image_path": "sample_output/images/Ability_to_Afford_More_Healthcare_Proportion.png"
+        },
+        {
+            "title": "Family Dynamics with and without Husbands",
+            "id": 162,
+            "dashboard_id": 35,
+            "description": "The graph is titled \"Family Dynamics with and without Husbands\" and illustrates the values of three different categories within families without husbands: Co-wives, Children, and Children old enough for school. It shows that there is a greater number of children in these families, followed by children old enough for school, and then co-wives. This information can be used to understand the composition of families who do not have a husband present.",
+            "image_path": "sample_output/images/Family_Dynamics_with_and_without_Husbands.png"
+        },
+        {
+            "title": "Supportive Husbands Proportion",
+            "id": 163,
+            "dashboard_id": 35,
+            "description": "The purpose of the graph is to illustrate the proportion of supportive husbands. The graph shows that 70.3% of husbands are supportive, while 29.7% are not supportive.",
+            "image_path": "sample_output/images/Supportive_Husbands_Proportion.png"
+        },
+        {
+            "title": "Family Dynamics with and without Husbands",
+            "id": 162,
+            "dashboard_id": 35,
+            "description": "This bar graph illustrates the dynamics within families that do not include a husband. It is divided into three categories: \"Co-wives,\" \"Children,\" and \"Children old enough for school.\" The graph indicates that among these families, there are relatively few co-wives, while the number of children and children old enough for school is significantly higher, with children being the most numerous.",
+            "image_path": "sample_output/images/Family_Dynamics_with_and_without_Husbands.png"
+        },
+        {
+            "title": "Supportive Husbands Proportion",
+            "id": 163,
+            "dashboard_id": 35,
+            "description": "This pie chart illustrates the proportion of supportive husbands, with 70.3% of respondents answering \"Yes\" and 29.7% of respondents answering \"No\". Its purpose is to visually represent the distribution of responses regarding husbands being supportive.",
+            "image_path": "sample_output/images/Supportive_Husbands_Proportion.png"
+        },
+        {
+            "title": "New vs Existing Businesses Proportion",
+            "id": 164,
+            "dashboard_id": 35,
+            "description": "The pie chart illustrates the proportion of new businesses compared to existing businesses. It shows that 65.6% are new businesses and 34.4% are existing businesses, indicating that new businesses make up a larger share.",
+            "image_path": "sample_output/images/New_vs_Existing_Businesses_Proportion.png"
+        },
+        {
+            "title": "Income Over Time",
+            "id": 165,
+            "dashboard_id": 35,
+            "description": "This graph is intended to depict the distribution of income over time, specifically focusing on the category of individuals earning 10,000 Kshs and above per month. The data reveals that, as of March 2023, there are 3 individuals or instances within this income bracket, while there are no recorded values for the other time points indicated. This suggests a spike or only available data at that particular time.",
+            "image_path": "sample_output/images/Income_Over_Time.png"
+        },
+        {
+            "title": "Number of Children in Families",
+            "id": 167,
+            "dashboard_id": 35,
+            "description": "This bar graph illustrates the distribution of the number of children in families across various categories. The x-axis represents the number of children in increments from 1 to 20 or more, and the y-axis indicates the corresponding value or count of families within each category. The height of each bar indicates a higher count of families for that particular number of children. The graph shows that families with 4 children are the most common, while there are significant counts for families with \"20 or more\" children as well.",
+            "image_path": "sample_output/images/Number_of_Children_in_Families.png"
+        },
+        {
+            "title": "Number of Participants Who Trained Others per Skill",
+            "id": 168,
+            "dashboard_id": 35,
+            "description": "The graph illustrates the number of participants who have trained others in catering and sewing. It shows that approximately 80 participants trained others in catering and around 160 participants trained others in sewing, indicating that more participants were involved in training others in sewing compared to catering.",
+            "image_path": "sample_output/images/Number_of_Participants_Who_Trained_Others_per_Skill.png"
+        },
+        {
+            "title": "Number of Meals Consumed by Families",
+            "id": 169,
+            "dashboard_id": 35,
+            "description": "The graph illustrates the distribution of the number of meals consumed by families across different categories. The x-axis represents various categories, while the y-axis shows the corresponding values. The data indicates that the highest number of meals are concentrated around the third category, followed by the second category. Other categories have significantly fewer meals consumed, indicating a notable preference or consumption pattern among families.",
+            "image_path": "sample_output/images/Number_of_Meals_Consumed_by_Families.png"
+        },
+        {
+            "title": "Water Treatment Proportion",
+            "id": 170,
+            "dashboard_id": 35,
+            "description": "This bar graph depicts the proportions of different water treatment methods used. The categories on the x-axis represent various methods, including boiling, the use of chlorine, water filters, sieves, boreholes, purchased water, and untreated water. The y-axis shows the number of occurrences for each method. The graph reveals that a significant majority of water is either boiled or left untreated, with much smaller proportions using other treatment methods such as chlorine, water filters, sieves, boreholes, or purchased water.",
+            "image_path": "sample_output/images/Water_Treatment_Proportion.png"
+        },
+        {
+            "title": "Financial Emergencies Proportion",
+            "id": 171,
+            "dashboard_id": 35,
+            "description": "This pie chart illustrates the proportion of financial emergencies, indicating that 61.2% of respondents have experienced a financial emergency, while 38.8% have not. The purpose of this graph is to show the prevalence of financial emergencies among the surveyed population.",
+            "image_path": "sample_output/images/Financial_Emergencies_Proportion.png"
+        },
+        {
+            "title": "Were Financial Emergencies Paid For Proportion",
+            "id": 172,
+            "dashboard_id": 35,
+            "description": "This pie chart shows the proportion of responses to whether financial emergencies were paid for. It indicates that 51.8% of people fully paid for financial emergencies, 27.7% partially paid for them, and 20.5% did not pay for them at all.",
+            "image_path": "sample_output/images/Were_Financial_Emergencies_Paid_For_Proportion.png"
+        },
+        {
+            "title": "Distance to Hospital",
+            "id": 173,
+            "dashboard_id": 35,
+            "description": "This bar graph illustrates the distribution of values based on the distance to a hospital. The categories are divided into three ranges: 1-3 km, 3-5 km, and more than 5 km. The graph shows that the majority of values fall within the 1-3 km range, followed by the 3-5 km range, with the fewest values in the more than 5 km range. The purpose of this graph is to visualize the concentration of values relative to their distance to the hospital.",
+            "image_path": "sample_output/images/Distance_to_Hospital.png"
+        },
+        {
+            "title": "Transportation Mode to Reach Hospital",
+            "id": 174,
+            "dashboard_id": 35,
+            "description": "This bar graph presents data on the modes of transportation used to reach a hospital. Each bar represents a different transportation mode (e.g., walking, motorbike, etc.), with the height of the bars indicating the number of people using each mode. The graph highlights that walking is the most common mode of transportation, followed by using a motorbike, while other modes are significantly less common.",
+            "image_path": "sample_output/images/Transportation_Mode_to_Reach_Hospital.png"
+        },
+        {
+            "title": "Ability to Afford More Healthcare Proportion",
+            "id": 175,
+            "dashboard_id": 35,
+            "description": "The pie chart's purpose is to show the proportion of people's ability to afford more healthcare. It tells us that 80.8% of people responded \"Yes\" while 19.2% responded \"No\".",
+            "image_path": "sample_output/images/Ability_to_Afford_More_Healthcare_Proportion.png"
+        },
+        {
+            "title": "Proportion of Respondant Seeing More Women in the Community Eating Better Food",
+            "id": 176,
+            "dashboard_id": 35,
+            "description": "The graph is a pie chart showing the proportion of respondents who observed more women in the community eating better food. It indicates that 91.4% of respondents have noticed this trend, while 8.6% have not.",
+            "image_path": "sample_output/images/Proportion_of_Respondant_Seeing_More_Women_in_the_Community_Eating_Better_Food.png"
+        },
+        {
+            "title": "Proportion of Respondant Seeing Less Women and Children in the Community with Malnutrition",
+            "id": 177,
+            "dashboard_id": 35,
+            "description": "The graph illustrates the proportion of respondents who have observed fewer women and children with malnutrition in their community. It shows that 89% of respondents have noticed a reduction, while 11% have not.",
+            "image_path": "sample_output/images/Proportion_of_Respondant_Seeing_Less_Women_and_Children_in_the_Community_with_Malnutrition.png"
+        },
+        {
+            "title": "Proportion of Respondant Seeing More Women in the Community Feel More Empowered to Care for their Children",
+            "id": 178,
+            "dashboard_id": 35,
+            "description": "The pie chart displays the proportion of respondents who feel more empowered to care for their community upon seeing more women in their community. The chart reveals that 98.4% of respondents answered \"Yes,\" indicating a positive impact, while only 1.6% answered \"No.\"",
+            "image_path": "sample_output/images/Proportion_of_Respondant_Seeing_More_Women_in_the_Community_Feel_More_Empowered_to_Care_for_their_Children.png"
+        },
+        {
+            "title": "Proportion of Respondant Seeing More Time for Their Own Activities",
+            "id": 179,
+            "dashboard_id": 35,
+            "description": "This pie chart shows the proportion of respondents who perceive having more time for their own activities. 69.9% of the respondents answered \"Yes,\" indicating that they do see more time for their own activities, while 30.1% of the respondents answered \"No.\"",
+            "image_path": "sample_output/images/Proportion_of_Respondant_Seeing_More_Time_for_Their_Own_Activities.png"
+        },
+        {
+            "title": "Proportion of Respondant Who Trained Others",
+            "id": 180,
+            "dashboard_id": 35,
+            "description": "The graph is a pie chart depicting the proportion of respondents who have trained others. It shows that 67.8% of the respondents have trained others, while 32.2% have not.",
+            "image_path": "sample_output/images/Proportion_of_Respondant_Who_Trained_Others.png"
+        },
+        {
+            "title": "Number of People Supported Outside of Family",
+            "id": 181,
+            "dashboard_id": 35,
+            "description": "This bar graph displays the distribution of individuals based on the number of people they support outside their immediate family. It shows that the largest proportion of people supports only one person, followed by those who support two people. The graph indicates a declining number of individuals as the number of people they support increases, with very few people supporting more than four individuals. This suggests that most people provide support to a small number of individuals outside their family.",
+            "image_path": "sample_output/images/Number_of_People_Supported_Outside_of_Family.png"
+        },
+        {
+            "title": "Ability to Afford More Feminine Hygiene Products Proportion",
+            "id": 182,
+            "dashboard_id": 35,
+            "description": "This pie chart illustrates the proportion of individuals who are able to afford more feminine hygiene products versus those who are not. 78.7% of respondents indicated that they can afford more feminine hygiene products, while 21.3% stated that they cannot.",
+            "image_path": "sample_output/images/Ability_to_Afford_More_Feminine_Hygiene_Products_Proportion.png"
+        },
+        {
+            "title": "Average Income based on Business Establishment Date",
+            "id": 166,
+            "dashboard_id": 35,
+            "description": "The graph titled \"Average Income based on Business Establishment Date\" illustrates the fluctuations in average income across various dates of business establishment. The purpose of the graph is to analyze how the average income varies with the age of a business, by plotting these values over a given date range. The vertical axis represents the income values, while the horizontal axis indicates different establishment dates. The data shows considerable variability in average income over the different establishment dates.",
+            "image_path": "sample_output/images/Average_Income_based_on_Business_Establishment_Date.png"
+        }
+    ]
+}
