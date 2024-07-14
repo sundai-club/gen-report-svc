@@ -1,7 +1,20 @@
+import json
 import requests
 import os
 
 from load_input import llm_chain_input_json
+
+def read_json_file(file_path):
+  try:
+    with open(file_path, 'r') as file:
+      data = json.load(file)
+    return data
+  except FileNotFoundError:
+    print(f"File not found: {file_path}")
+  except json.JSONDecodeError:
+    print(f"Error decoding JSON file: {file_path}")
+  except Exception as e:
+    print(f"Error reading file: {e}")
 
 def download_public_s3_file(s3_url, local_file_path):
     try:
