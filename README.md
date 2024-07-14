@@ -24,6 +24,13 @@ python -m venv env
 pip install -r requirements.txt
 ```
 
+## Run locally
+
+```bash
+fastapi run main.py
+```
+
+
 ## Deploy Docker
 
 ### Update the requirements
@@ -44,3 +51,4 @@ docker build -t gen-report-svc .
 ```bash
 docker run -d -p 8000:8000 gen-report-svc
 ```
+
