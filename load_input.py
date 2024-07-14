@@ -90,11 +90,5 @@ def llm_chain_input_json(path):
 
     return output_json
 
-# sample 
-result = llm_chain_input_json("grant.docx")
-# content = json.loads(result)
-writeJson('test.json', result)
-
-
 
 
