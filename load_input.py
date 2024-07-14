@@ -1,12 +1,17 @@
 
-# pip install langchain
-# pip install --quiet openai python-dotenv
-# pip install --upgrade --quiet  docx2txt
+# pip3 install langchain
+# pip3 install --quiet openai python-dotenv
+# pip3 install docx2txt
+# pip3 isntall python-dotenv
+# pip3 install langchain_community
 
 
 import os
 import openai
 import sys
+import json
+
+
 from langchain_community.document_loaders import Docx2txtLoader
 from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_core.output_parsers import JsonOutputParser
@@ -35,12 +40,22 @@ class Document(BaseModel):
 
 parser = JsonOutputParser(pydantic_object=Document)
 
+
+
 def load_doc(file_path):
     # "grant.docx"
     loader = Docx2txtLoader(file_path)
     docs = loader.load()
 
     return docs
+
+def writeJson(output, summary_result):
+    # Write the data to the JSON file
+    with open(output, "w") as f:
+        json.dump(summary_result, f, indent=4)
+
+    
+
 
 def llm_chain_input_json(path):
     docs = load_doc(path)
@@ -69,12 +84,16 @@ def llm_chain_input_json(path):
     llm = ChatOpenAI(temperature=0, model_name="gpt-3.5-turbo-1106")
     chain = load_summarize_chain(llm, chain_type="stuff", prompt=prompt)
 
-    summary_result = chain.run(docs)
-
     result_json = chain.run(docs)
 
+    output_json = json.loads(result_json)
 
-    return result_json
+    return output_json
+
+# sample 
+result = llm_chain_input_json("grant.docx")
+# content = json.loads(result)
+writeJson('test.json', result)
 
 
 
