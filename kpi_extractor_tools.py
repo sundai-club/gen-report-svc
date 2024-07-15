@@ -194,3 +194,43 @@ def generate_json_outline(json_obj, indent=0):
             outline += generate_json_outline(item, indent + 1)
             outline += '  ' * indent + '],\n'
     return outline
+
+from PIL import Image
+
+def merge_images_in_grid(image_paths, output_path, images_per_row=2):
+    # Open images
+    images = [Image.open(path) for path in image_paths]
+
+    # Calculate the number of rows needed
+    num_rows = (len(images) + images_per_row - 1) // images_per_row  # ceiling division
+
+    # Determine the max height for images in the grid
+    max_height = max(img.height for img in images)
+
+    # Calculate the total height of the new image
+    total_height = num_rows * max_height
+
+    # Calculate the maximum width of each row
+    row_widths = []
+    for i in range(num_rows):
+        row_images = images[i * images_per_row : (i + 1) * images_per_row]
+        row_widths.append(sum(img.width for img in row_images))
+
+    # Calculate the total width of the new image (max of row widths)
+    total_width = max(row_widths)
+
+    # Create a new image with the appropriate size and white background
+    new_image = Image.new("RGB", (total_width, total_height), "white")
+
+    # Paste each image into the new image
+    current_y = 0
+    for row in range(num_rows):
+        current_x = 0
+        row_images = images[row * images_per_row : (row + 1) * images_per_row]
+        for img in row_images:
+            new_image.paste(img, (current_x, current_y))
+            current_x += img.width
+        current_y += max_height
+
+    # Save the new image
+    new_image.save(output_path + ".png")

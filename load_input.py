@@ -17,7 +17,8 @@ from langchain_core.pydantic_v1 import BaseModel, Field
 from langchain_core.output_parsers import JsonOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain.chains.summarize import load_summarize_chain
-from langchain.chat_models import ChatOpenAI
+# from langchain.chat_models import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 
 
 sys.path.append('../..')
@@ -25,7 +26,7 @@ sys.path.append('../..')
 from dotenv import load_dotenv, find_dotenv
 _ = load_dotenv(find_dotenv()) # read local .env file
 
-openai.api_key  = os.environ['OPENAI_API_KEY']
+openai.api_key  = os.getenv('OPENAI_API_KEY')
 
 class Nest(BaseModel):
     Content = 'Content'
@@ -90,5 +91,9 @@ def llm_chain_input_json(path):
 
     return output_json
 
+
+if __name__ == "__main__":
+    output = llm_chain_input_json("sample_input/grant.docx")
+    print(output)
 
 

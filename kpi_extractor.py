@@ -50,7 +50,7 @@ def kpi_to_graphs_prompt(graphs_json_str):
     Here is a list of graphs that had been produced by another datalist that describe the outcomes of the work done for this grant. 
     {graphs_json_str}
 
-    For each KPI that you had identified above, you need to identify which graphs describe the outcomes of the work done for this grant for that KPI. Try to match more than one graph to each KPI if possible.
+    For each KPI that you had identified above, you need to identify multiple graphs that describe the outcomes of the work done for this grant for that KPI.
 
     You must update your list in the following json structure:
     {{
@@ -69,6 +69,8 @@ def kpi_to_graphs_prompt(graphs_json_str):
     You must use the dashboard_id from the list of graphs and its description. do not use PNGs in the original report 
 
     You must make sure that ALL graphs listed are added to a KPI or added into a separate category called 'discarded' in the output. No graphs should be left unaccounted for. Minimize discards.
+
+    Output only the final json object, nothing else.
 
     """
     
@@ -125,6 +127,10 @@ if __name__=='__main__':
 
     with open(graphs_analysed, 'r') as file:
         graphs_json = json.load(file)
+
+    # Create a mapping from dashboard_id to image_path
+    dashboard_id_to_image_path = {graph["id"]: graph["image_path"] for graph in graphs_json["graphs"]}
+    print(dashboard_id_to_image_path)
         
     # some helper conversions         
     graphs_json_str = json.dumps(graphs_json, indent=4)
@@ -133,15 +139,57 @@ if __name__=='__main__':
     # get next prompt 
     next_prompt = kpi_to_graphs_prompt(graphs_json_str)
     
-    
-    
     # match kpis to graphs 
     messages.append({"role": "user", "content": next_prompt})
+
     response = get_response(client, messages, verbose=True)
     
+
     # append final result
     messages.append({"role": "assistant", "content": response})
+
+    # Save the final result as a json
+    kpi_final_json_str = messages[-1]['content']
+    import json
+    import re
+    from kpi_extractor_tools import merge_images_in_grid
+    # Extract the JSON content using regular expressions
+    json_match = re.search(r'\{.*\}', kpi_final_json_str, re.DOTALL)
+    if json_match:
+        kpi_final_json_str = json_match.group(0)
+
+    kpi_data = json.loads(kpi_final_json_str)
+
+    # Ensure the output directory exists
+    output_dir = "merged_images"
+    os.makedirs(output_dir, exist_ok=True)
+
+    # Iterate through each KPI and merge the relevant images
+    # Also call Serge's function to get the caption
+    # And add to a new json object called kpi_data_final which has the caption, the merged image path, the KPI description, and the dashboard_ids
+    kpi_data_final = {}
+    for kpi, details in kpi_data["KPIs"].items():
+        image_paths = [dashboard_id_to_image_path[item[0]] for item in details["dashboard_ids"]]
+        output_path = f"merged_images/{kpi}.png"
+        merge_images_in_grid(image_paths, output_path)
+        print(f"Merged images for {kpi} saved to {output_path}")
+        # TO INSERT: CALL SERGE'S FUNCTION TO GET CAPTION
+        caption = "DEFAULT CAPTION"
+
+        kpi_data_final[kpi] = {
+            "caption": caption,
+            "image_path": output_path,
+            "description": details["description"],
+            "dashboard_ids": details["dashboard_ids"]
+        }
+
+    print(kpi_data_final)
+        
     
+    
+
+
+
     
     from IPython import embed; embed()
     
