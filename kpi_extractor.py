@@ -1,7 +1,5 @@
-
-import json
 import glob
-
+import json 
 from dotenv import load_dotenv
 
 from openai import OpenAI
@@ -19,7 +17,7 @@ def test_api_key():
     client = OpenAI()
 
     stream = client.chat.completions.create(
-        model="gpt-3.5-turbo",
+        model="gpt-4o",
         messages=[{"role": "user", "content": "Say this is a test. The API worked."}],
         stream=True,
     )
@@ -112,7 +110,7 @@ def caption_prompt_2(KPI, graphs):
     """
 
 # Function to get response from the model
-def get_response(client, messages,model="gpt-3.5-turbo",verbose=False):
+def get_response(client, messages,model="gpt-4o",verbose=False):
     stream = client.chat.completions.create(
         model=model,  # or gpt-4
         messages=messages,
@@ -149,10 +147,10 @@ def generate_captions(response_prev,messages):
     return figure_captions
 
 
-def kpi_pipeline():
+def kpi_pipeline(docs_path, dashboard_json):
     test_api_key()
-    
-    docs = glob.glob('sample_input/grant.docx')
+    # docs_path = 'sample_input/grant.docx'
+    docs = glob.glob(docs_path)
     assert docs
     
     # load document
@@ -175,12 +173,14 @@ def kpi_pipeline():
     response = get_response(client, messages, verbose=True)
     messages.append({"role": "assistant", "content": response})
     
-    # analyse images 
-    graphs_analysed='sample_output/graphs_analysed.json'
-    analyse_dashboard_json(path="sample_input/dashboard.json",overwrite=False,output=graphs_analysed)
-
-    with open(graphs_analysed, 'r') as file:
-        graphs_json = json.load(file)
+    # analyse images
+    graphs_analysed = "sample_output/" + dashboard_json + "_analysed.json"
+    graphs_json = analyse_dashboard_json(dashboard_json,False,graphs_analysed)
+    print("\n\n\nHERE!!!!!")
+    print(graphs_json)
+    # graphs_analysed='sample_output/graphs_analysed.json'
+    # with open(graphs_analysed, 'r') as file:
+    #     graphs_json = json.load(file)
 
     # Create a mapping from dashboard_id to image_path
     dashboard_id_to_image_path = {graph["id"]: graph["image_path"] for graph in graphs_json["graphs"]}
@@ -188,7 +188,8 @@ def kpi_pipeline():
     dashboard_id_to_description = {graph["id"]: graph["description"] for graph in graphs_json["graphs"]}
     dashboard_id_to_title = {graph["id"]: graph["title"] for graph in graphs_json["graphs"]}
         
-    # some helper conversions         
+    # some helper conversions 
+    import json        
     graphs_json_str = json.dumps(graphs_json, indent=4)
     graphs_json_outline = "{\n" + generate_json_outline(graphs_json) + "}\n"
     
@@ -206,7 +207,6 @@ def kpi_pipeline():
 
     # Save the final result as a json
     kpi_final_json_str = messages[-1]['content']
-    import json
     import re
     from kpi_extractor_tools import merge_images_in_grid
     # Extract the JSON content using regular expressions
@@ -224,6 +224,11 @@ def kpi_pipeline():
     # And add to a new json object called kpi_data_final which has the caption, the merged image path, the KPI description, and the dashboard_ids
     kpi_data_final = {}
     for kpi, details in kpi_data["KPIs"].items():
+
+        if 'kpi' == 'discarded':
+            continue
+            #from IPython import embed; embed()
+        
         image_paths = [dashboard_id_to_image_path[item[0]] for item in details["dashboard_ids"]]
         output_path = f"merged_images/{kpi}.png"
         merge_images_in_grid(image_paths, output_path)
@@ -256,7 +261,8 @@ def kpi_pipeline():
     return kpi_data_final
     
 if __name__=='__main__':
-    print(kpi_pipeline())
+
+    print(kpi_pipeline('sample_input/grant.docx', "sample_input/dashboard.json"))
     
         
     

@@ -110,6 +110,11 @@ def append_json_object_to_file(json_object, file_path):
       file_path: The path to the json file.
   """
 
+  # Create the directory if it doesn't exist
+  directory = os.path.dirname(file_path)
+  if not os.path.exists(directory):
+    os.makedirs(directory)
+
   # Check if the file exists
   try:
     with open(file_path, "r") as f:
@@ -150,6 +155,12 @@ def analyse_dashboard_json(path,overwrite=False,output='sample_output/graphs_ana
             "image_path": image_path
             }
             append_json_object_to_file(json_content, output)
+
+    with open(output, 'r') as file:
+        graphs_json = json.load(file)
+
+    return graphs_json
+
             
             
             
