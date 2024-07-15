@@ -148,8 +148,8 @@ def generate_captions(response_prev,messages):
         
     return figure_captions
 
-    
-if __name__=='__main__': 
+
+def kpi_pipeline():
     test_api_key()
     
     docs = glob.glob('sample_input/grant.docx')
@@ -253,10 +253,12 @@ if __name__=='__main__':
             "dashboard_ids": details["dashboard_ids"]
         }
 
-    print(kpi_data_final)
-        
+    return kpi_data_final
     
-    from IPython import embed; embed()
+if __name__=='__main__':
+    print(kpi_pipeline())
+    
+        
     
     
 
