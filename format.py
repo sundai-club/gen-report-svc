@@ -12,7 +12,8 @@ def json_to_custom_format(json_obj, kpi_objects):
     })
     
     # Sections
-    sections = ['Introduction', 'Methods', 'Results', 'Discussion']
+    # sections = ['Introduction', 'Methods', 'Results', 'Discussion']
+    sections = ['Introduction', 'Methods']
     for section in sections:
         custom_format["content"].append({
             "type": "heading",

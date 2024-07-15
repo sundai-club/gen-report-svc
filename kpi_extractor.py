@@ -176,8 +176,8 @@ def kpi_pipeline(docs_path, dashboard_json):
     # analyse images
     graphs_analysed = "sample_output/" + dashboard_json + "_analysed.json"
     graphs_json = analyse_dashboard_json(dashboard_json,False,graphs_analysed)
-    print("\n\n\nHERE!!!!!")
-    print(graphs_json)
+    # print("\n\n\nHERE!!!!!")
+    # print(graphs_json)
     # graphs_analysed='sample_output/graphs_analysed.json'
     # with open(graphs_analysed, 'r') as file:
     #     graphs_json = json.load(file)
@@ -225,17 +225,17 @@ def kpi_pipeline(docs_path, dashboard_json):
     kpi_data_final = {}
     for kpi, details in kpi_data["KPIs"].items():
 
-        if 'kpi' == 'discarded':
+        if 'kpi' == 'discarded' or "description" not in details.keys():
             continue
             #from IPython import embed; embed()
-        
-        image_paths = [dashboard_id_to_image_path[item[0]] for item in details["dashboard_ids"]]
+        # from IPython import embed; embed()
+        image_paths = [dashboard_id_to_image_path[int(item[0])] for item in details["dashboard_ids"]]
         output_path = f"merged_images/{kpi}.png"
         merge_images_in_grid(image_paths, output_path)
         print(f"Merged images for {kpi} saved to {output_path}")
         # TO INSERT: CALL SERGE'S FUNCTION TO GET CAPTION
         graph_descriptions = [
-            f"{dashboard_id_to_title[item[0]]}: {dashboard_id_to_description[item[0]]}"
+            f"{dashboard_id_to_title[int(item[0])]}: {dashboard_id_to_description[int(item[0])]}"
             for item in details["dashboard_ids"]
         ]
         graph_descriptions_str = "\n".join(graph_descriptions)

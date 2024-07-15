@@ -2,7 +2,9 @@ import json
 import requests
 import os
 
-from load_input import llm_chain_input_json
+from format import json_to_custom_format
+from kpi_extractor import kpi_pipeline
+from load_input2 import llm_chain_input_json
 
 def read_json_file(file_path):
   try:
@@ -36,9 +38,20 @@ def download_public_s3_file(s3_url, local_file_path):
     except requests.exceptions.RequestException as e:
         print(f"Error downloading file: {e}")
 
-def trigger_report(report_url, data_url):
-    download_public_s3_file(report_url, "report.docx")
-    download_public_s3_file(data_url, "data.xlsx")
-    
-    return llm_chain_input_json("tmp/report.docx")
+def trigger_report(report_url):
+  download_public_s3_file(report_url, "report.docx")
+  report_data =  llm_chain_input_json("tmp/report.docx")
+  markdown = None
+  for _ in range(3):
+    try: 
+      chart_report_data = kpi_pipeline("tmp/report.docx", "dashboard.json")
+      markdown = json_to_custom_format(report_data, chart_report_data)
+      break  # Break out of the loop if the download is successful
+    except Exception as e:
+      print(f"Error processing AAA: {e}")
+  
+  if (markdown is None):
+    return {"error": "Failed to generate the report"}
+  else:
+    return markdown
     

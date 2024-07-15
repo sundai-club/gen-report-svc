@@ -6,6 +6,8 @@ import requests
 import matplotlib.pyplot as plt
 import json
 import os
+import matplotlib
+matplotlib.use('agg')
 
 
 # Function to plot and save a graph from a json object
