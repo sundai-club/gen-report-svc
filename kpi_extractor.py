@@ -68,7 +68,7 @@ def kpi_to_graphs_prompt(graphs_json_str):
 
     You must use the dashboard_id from the list of graphs and its description. do not use PNGs in the original report 
 
-    You must make sure that ALL graphs listed are added to a KPI or added into a separate category called 'discarded' in the output. No graphs should be left unaccounted for. Minimize discards.
+    You must make sure that ALL graphs listed are added to one or more KPI or added into a separate category called 'discarded' in the output. No graphs should be left unaccounted for. Minimize discards.
 
     Output only the final json object, nothing else.
 
@@ -93,7 +93,24 @@ def caption_prompt(KPI, graphs):
 
     """
     
-    
+def caption_prompt_2(KPI, graphs):
+  return f"""
+    You are an expert in writing grant applications. 
+    In your grant progress report you need to provide evidence of having met key performance indicators that had
+    been devised for the grant. 
+    Please provide a caption for a figure that shows how the current KPI had been met. 
+
+    Here is the KPI: {KPI}. 
+
+    Here is the description of the graphs that describe how the KPI had been met.
+    {graphs}
+    Please generate a short caption that summarizes all these graphs. 
+    Please refer to each graph separately in one short sentence. 
+    Please do not mention reference to ID at all. 
+    Please do not start the caption with 'Caption:'. 
+
+    """
+
 # Function to get response from the model
 def get_response(client, messages,model="gpt-3.5-turbo",verbose=False):
     stream = client.chat.completions.create(
@@ -132,7 +149,7 @@ def generate_captions(response_prev,messages):
     return figure_captions
 
     
-if __name__=='__main__':
+if __name__=='__main__': 
     test_api_key()
     
     docs = glob.glob('sample_input/grant.docx')
@@ -168,6 +185,8 @@ if __name__=='__main__':
     # Create a mapping from dashboard_id to image_path
     dashboard_id_to_image_path = {graph["id"]: graph["image_path"] for graph in graphs_json["graphs"]}
     print(dashboard_id_to_image_path)
+    dashboard_id_to_description = {graph["id"]: graph["description"] for graph in graphs_json["graphs"]}
+    dashboard_id_to_title = {graph["id"]: graph["title"] for graph in graphs_json["graphs"]}
         
     # some helper conversions         
     graphs_json_str = json.dumps(graphs_json, indent=4)
@@ -202,7 +221,6 @@ if __name__=='__main__':
     os.makedirs(output_dir, exist_ok=True)
 
     # Iterate through each KPI and merge the relevant images
-    # Also call Serge's function to get the caption
     # And add to a new json object called kpi_data_final which has the caption, the merged image path, the KPI description, and the dashboard_ids
     kpi_data_final = {}
     for kpi, details in kpi_data["KPIs"].items():
@@ -211,44 +229,32 @@ if __name__=='__main__':
         merge_images_in_grid(image_paths, output_path)
         print(f"Merged images for {kpi} saved to {output_path}")
         # TO INSERT: CALL SERGE'S FUNCTION TO GET CAPTION
-        caption = "DEFAULT CAPTION"
-
+        graph_descriptions = [
+            f"{dashboard_id_to_title[item[0]]}: {dashboard_id_to_description[item[0]]}"
+            for item in details["dashboard_ids"]
+        ]
+        graph_descriptions_str = "\n".join(graph_descriptions)
+        caption = get_response(client, [{"role": "user", "content": caption_prompt_2(details["description"], graph_descriptions_str)}])
+        # Save the merged image to Vercel Storage
+        from vercel_storage import blob
+        with open(output_path, 'rb') as fp:
+            resp = blob.put(
+                pathname=output_path,
+                body=fp.read(),
+                options={"no_suffix": True}
+            )
+        ############################
+        img_url = resp['url']
+        print(f"Image URL: {img_url}")
         kpi_data_final[kpi] = {
             "caption": caption,
-            "image_path": output_path,
+            "image_path": img_url,
             "description": details["description"],
             "dashboard_ids": details["dashboard_ids"]
         }
 
     print(kpi_data_final)
         
-    
-
-    ############
-    # now generate captions for each figure 
-    ############
-    
-    # clean up json 
-    if response.startswith("```json\n"):
-        response = response.replace("```json\n", "").replace("\n```", "")
-    response_json = json.loads(response)
-    # generate a new gpt query (no need to load the entire document into it. Also we hit the limit) 
-    messages2 = [messages[-1]]        
-    # generate 
-    captions_dict = generate_captions(response_json,messages2)
-
-        
-        
-
-
-
-
-        
-    
-    
-
-
-
     
     from IPython import embed; embed()
     

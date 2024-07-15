@@ -233,4 +233,4 @@ def merge_images_in_grid(image_paths, output_path, images_per_row=2):
         current_y += max_height
 
     # Save the new image
-    new_image.save(output_path + ".png")
+    new_image.save(output_path)
