@@ -75,7 +75,25 @@ def kpi_to_graphs_prompt(graphs_json_str):
     """
     
     
+def caption_prompt(KPI, graphs):
+  return f"""
+    You are an expert in writing grant applications. 
+    In your grant progress report you need to provide evidence of having met key performance indicators that had
+    been devised for the grant. 
+    Please provide a caption for a figure that shows how the current KPI had been met. 
 
+    Here is the KPI: {KPI}. 
+
+    Here is the description of the graphs that describe how the KPI had been met.
+    {graphs}
+    Please generate a short caption that summarizes all these graphs. 
+    Please refer to each graph separately in one short sentence. 
+    Please do not mention reference to ID at all. 
+    Please do not start the caption with 'Caption:'. 
+
+    """
+    
+    
 # Function to get response from the model
 def get_response(client, messages,model="gpt-3.5-turbo",verbose=False):
     stream = client.chat.completions.create(
@@ -93,6 +111,26 @@ def get_response(client, messages,model="gpt-3.5-turbo",verbose=False):
         print()  # For a new line after the complete response
     return response
 
+def generate_captions(response_prev,messages):
+    figure_captions = {}
+    for figure_id,key in enumerate(response_prev['KPIs'].keys()):
+        kpi = response_prev['KPIs'][key]
+        KPI = kpi['description']
+        graphs = [i[1] for i in kpi['dashboard_ids']]
+
+        next_prompt = caption_prompt(KPI, graphs)
+
+        # Append the previous output to the messages
+        messages.append({"role": "user", "content": next_prompt})
+
+        response = get_response(client, messages)
+
+        messages.append({"role": "assistant", "content": response})
+        
+        figure_captions[key] = response
+        
+    return figure_captions
+
     
 if __name__=='__main__':
     test_api_key()
@@ -104,7 +142,6 @@ if __name__=='__main__':
     loader = Docx2txtLoader(docs[0])
     data = loader.load()
     document = str(data[0])
-    # from IPython import embed; embed()
     
     # start client 
     client = OpenAI()
@@ -184,6 +221,28 @@ if __name__=='__main__':
         }
 
     print(kpi_data_final)
+        
+    
+
+    ############
+    # now generate captions for each figure 
+    ############
+    
+    # clean up json 
+    if response.startswith("```json\n"):
+        response = response.replace("```json\n", "").replace("\n```", "")
+    response_json = json.loads(response)
+    # generate a new gpt query (no need to load the entire document into it. Also we hit the limit) 
+    messages2 = [messages[-1]]        
+    # generate 
+    captions_dict = generate_captions(response_json,messages2)
+
+        
+        
+
+
+
+
         
     
     
