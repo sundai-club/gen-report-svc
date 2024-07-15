@@ -109,10 +109,10 @@ def get_response(client, messages,model="gpt-3.5-turbo",verbose=False):
         print()  # For a new line after the complete response
     return response
 
-def generate_captions(response,messages):
+def generate_captions(response_prev,messages):
     figure_captions = {}
-    for figure_id,key in enumerate(response['KPIs'].keys()):
-        kpi = response['KPIs'][key]
+    for figure_id,key in enumerate(response_prev['KPIs'].keys()):
+        kpi = response_prev['KPIs'][key]
         KPI = kpi['description']
         graphs = [i[1] for i in kpi['dashboard_ids']]
 
