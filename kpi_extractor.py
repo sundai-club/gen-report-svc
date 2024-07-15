@@ -225,7 +225,7 @@ def kpi_pipeline(docs_path, dashboard_json):
     kpi_data_final = {}
     for kpi, details in kpi_data["KPIs"].items():
 
-        if 'kpi' == 'discarded' or "description" not in details.keys():
+        if 'kpi' == 'discarded' or isinstance(details, list):
             continue
             #from IPython import embed; embed()
         # from IPython import embed; embed()
